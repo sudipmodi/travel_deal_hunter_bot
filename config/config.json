@@ -1,0 +1,180 @@
+{
+  "traveler": {
+    "name": "Sudip",
+    "origin_city": "Ahmedabad",
+    "origin_airport": "AMD",
+    "travelers_count": 2
+  },
+  "credit_cards": [
+    {
+      "name": "HDFC Regalia Gold",
+      "portal": "hdfc_smartbuy",
+      "portal_url": "https://smartbuy.hdfcbank.com",
+      "reward_program": "HDFC Reward Points",
+      "transfer_partners": ["Marriott Bonvoy", "InterMiles"]
+    },
+    {
+      "name": "Axis Atlas",
+      "portal": "axis_travel",
+      "portal_url": "https://www.axisbank.com/grab-deals/travel",
+      "reward_program": "Axis EDGE Miles",
+      "transfer_partners": ["Singapore Airlines KrisFlyer", "Air India", "InterMiles"]
+    },
+    {
+      "name": "Amex Platinum Travel",
+      "portal": "amex_travel",
+      "portal_url": "https://www.americanexpress.com/in/travel",
+      "reward_program": "Amex Membership Rewards",
+      "transfer_partners": ["Marriott Bonvoy", "Hilton Honors", "InterMiles", "British Airways Avios"]
+    }
+  ],
+  "loyalty_programs": {
+    "hotels": [
+      {
+        "program": "Accor ALL",
+        "priority": "primary",
+        "track_redemption_value": true,
+        "brands": ["Novotel", "Ibis", "Sofitel", "Pullman", "Mercure", "Grand Mercure", "Fairmont", "Movenpick"]
+      },
+      {
+        "program": "Marriott Bonvoy",
+        "priority": "secondary",
+        "track_redemption_value": true,
+        "brands": ["Marriott", "Sheraton", "Westin", "W Hotels", "Courtyard", "JW Marriott"]
+      },
+      {
+        "program": "ITC Hotels",
+        "priority": "secondary",
+        "track_redemption_value": false,
+        "brands": ["ITC Hotels", "Welcomhotel", "Fortune", "Mementos"]
+      }
+    ],
+    "airlines": [
+      "Singapore Airlines KrisFlyer",
+      "Air India Flying Returns",
+      "Emirates Skywards",
+      "British Airways Avios",
+      "InterMiles",
+      "Etihad Guest",
+      "Thai Royal Orchid Plus",
+      "ANA Mileage Club",
+      "Japan Airlines Mileage Bank"
+    ]
+  },
+  "destinations": {
+    "domestic": [
+      {
+        "name": "Kerala",
+        "airports": ["COK", "TRV"],
+        "hotels_search": ["Kochi hotels", "Munnar hotels", "Alleppey hotels"],
+        "accor": true, "marriott": true, "itc": true,
+        "thresholds": {"flight_rt_pp": 4000, "hotel_night": 5000, "drop_pct": 25}
+      },
+      {
+        "name": "Hyderabad",
+        "airports": ["HYD"],
+        "hotels_search": ["Hyderabad hotels"],
+        "accor": true, "marriott": true, "itc": true,
+        "thresholds": {"flight_rt_pp": 3500, "hotel_night": 4500, "drop_pct": 25}
+      },
+      {
+        "name": "Tamil Nadu",
+        "airports": ["MAA", "TRZ"],
+        "hotels_search": ["Chennai hotels", "Pondicherry hotels", "Ooty hotels"],
+        "accor": true, "marriott": true, "itc": true,
+        "thresholds": {"flight_rt_pp": 4000, "hotel_night": 5000, "drop_pct": 25}
+      },
+      {
+        "name": "Karnataka",
+        "airports": ["BLR"],
+        "hotels_search": ["Bangalore hotels", "Coorg hotels", "Mysore hotels"],
+        "accor": true, "marriott": true, "itc": true,
+        "thresholds": {"flight_rt_pp": 3500, "hotel_night": 4500, "drop_pct": 25}
+      },
+      {
+        "name": "Assam",
+        "airports": ["GAU"],
+        "hotels_search": ["Guwahati hotels", "Kaziranga hotels"],
+        "accor": false, "marriott": true, "itc": false,
+        "thresholds": {"flight_rt_pp": 6000, "hotel_night": 4000, "drop_pct": 20}
+      },
+      {
+        "name": "Odisha",
+        "airports": ["BBI"],
+        "hotels_search": ["Bhubaneswar hotels", "Puri hotels"],
+        "accor": false, "marriott": true, "itc": true,
+        "thresholds": {"flight_rt_pp": 5000, "hotel_night": 4000, "drop_pct": 20}
+      }
+    ],
+    "international": [
+      {
+        "name": "Japan",
+        "airports": ["NRT", "KIX", "HND"],
+        "hotels_search": ["Tokyo hotels", "Kyoto hotels", "Osaka hotels"],
+        "accor": true, "marriott": true, "itc": false,
+        "preferred_airlines": ["Singapore Airlines", "ANA", "Japan Airlines", "Air India"],
+        "thresholds": {"flight_rt_pp": 35000, "hotel_night": 8000, "drop_pct": 15}
+      },
+      {
+        "name": "London",
+        "airports": ["LHR", "LGW"],
+        "hotels_search": ["London hotels"],
+        "accor": true, "marriott": true, "itc": false,
+        "preferred_airlines": ["Virgin Atlantic", "British Airways", "Air India"],
+        "thresholds": {"flight_rt_pp": 40000, "hotel_night": 10000, "drop_pct": 15}
+      },
+      {
+        "name": "Singapore",
+        "airports": ["SIN"],
+        "hotels_search": ["Singapore hotels"],
+        "accor": true, "marriott": true, "itc": false,
+        "preferred_airlines": ["Singapore Airlines", "Air India", "IndiGo"],
+        "thresholds": {"flight_rt_pp": 18000, "hotel_night": 8000, "drop_pct": 20}
+      },
+      {
+        "name": "Bali",
+        "airports": ["DPS"],
+        "hotels_search": ["Bali Seminyak hotels", "Ubud hotels", "Nusa Dua hotels"],
+        "accor": true, "marriott": true, "itc": false,
+        "preferred_airlines": ["Singapore Airlines", "Malaysia Airlines", "Garuda Indonesia"],
+        "thresholds": {"flight_rt_pp": 20000, "hotel_night": 5000, "drop_pct": 20}
+      },
+      {
+        "name": "Indonesia",
+        "airports": ["CGK"],
+        "hotels_search": ["Jakarta hotels", "Yogyakarta hotels"],
+        "accor": true, "marriott": true, "itc": false,
+        "preferred_airlines": ["Singapore Airlines", "Garuda Indonesia"],
+        "thresholds": {"flight_rt_pp": 18000, "hotel_night": 4000, "drop_pct": 20}
+      },
+      {
+        "name": "Vietnam",
+        "airports": ["SGN", "HAN"],
+        "hotels_search": ["Ho Chi Minh City hotels", "Hanoi hotels", "Da Nang hotels"],
+        "accor": true, "marriott": true, "itc": false,
+        "preferred_airlines": ["Singapore Airlines", "VietJet", "Vietnam Airlines"],
+        "thresholds": {"flight_rt_pp": 16000, "hotel_night": 4000, "drop_pct": 20}
+      },
+      {
+        "name": "UAE",
+        "airports": ["DXB", "AUH"],
+        "hotels_search": ["Dubai hotels", "Abu Dhabi hotels"],
+        "accor": true, "marriott": true, "itc": false,
+        "preferred_airlines": ["Emirates", "Etihad", "Air India Express"],
+        "thresholds": {"flight_rt_pp": 12000, "hotel_night": 6000, "drop_pct": 20}
+      }
+    ]
+  },
+  "search_windows": {
+    "domestic": {
+      "advance_days_min": 14,
+      "advance_days_max": 180,
+      "trip_durations": [2, 3, 4, 5]
+    },
+    "international": {
+      "advance_days_min": 30,
+      "advance_days_max": 330,
+      "trip_durations": [5, 7, 10]
+    }
+  }
+}
