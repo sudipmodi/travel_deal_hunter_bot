@@ -611,3 +611,29 @@ def cleanup_old_data() -> dict:
         return {}
     finally:
         conn.close()
+# ============================================================
+# COMPATIBILITY HELPERS (used by flight_checker)
+# ============================================================
+
+def save_flight_price(route: str, price: float, airline: str = "unknown",
+                      is_direct: bool = False, stops: int = 0):
+    """
+    Wrapper used by flight_checker to store prices.
+    Uses existing record_flight_price() internally.
+    """
+
+    destination = route.split("-")[-1]
+
+    return record_flight_price(
+        route=route,
+        destination_name=destination,
+        price=price,
+        airline=airline,
+        stops=stops,
+        is_direct=is_direct,
+        departure_date=None,
+        return_date=None,
+        duration=None,
+        booking_class="ECONOMY",
+        metadata={}
+    )
