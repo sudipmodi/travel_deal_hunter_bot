@@ -2,17 +2,15 @@ import os
 import logging
 import requests
 import time
-from datetime import datetime
 
 from db.database import save_flight_price
 
 logger = logging.getLogger(__name__)
 
 SERPAPI_KEY = os.environ.get("SERPAPI_KEY")
-
 SERPAPI_URL = "https://serpapi.com/search.json"
 
-# Prevent API quota burn
+# protect API quota
 REQUEST_DELAY = 6
 
 
@@ -46,9 +44,7 @@ def search_flights(origin, destination):
         if not flights:
             return None
 
-        price = flights[0].get("price")
-
-        return price
+        return flights[0].get("price")
 
     except Exception as e:
         logger.error(f"SerpAPI request failed: {e}")
@@ -85,5 +81,5 @@ def run_flight_check(config):
 
                 logger.info(f"Saved price ₹{price} for {route}")
 
-                # Rate limit to protect API quota
+                # rate limit
                 time.sleep(REQUEST_DELAY)
