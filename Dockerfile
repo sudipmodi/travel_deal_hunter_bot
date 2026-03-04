@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM mcr.microsoft.com/playwright/python:v1.48.0-jammy
 
 WORKDIR /app
 
@@ -9,10 +9,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt --break-system-packages
 
 # Install Playwright browsers
-RUN playwright install chromium && playwright install-deps
+RUN playwright install chromium --with-deps
 
 COPY src/ ./src/
 COPY config/ ./src/config/
