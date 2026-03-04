@@ -617,10 +617,6 @@ def cleanup_old_data() -> dict:
 
 def save_flight_price(route: str, price: float, airline: str = "unknown",
                       is_direct: bool = False, stops: int = 0):
-    """
-    Wrapper used by flight_checker to store prices.
-    Uses existing record_flight_price() internally.
-    """
 
     destination = route.split("-")[-1]
 
