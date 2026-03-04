@@ -112,31 +112,31 @@ def job_cleanup():
 def setup_scheduler():
     """Configure APScheduler with all cron jobs."""
     scheduler = BackgroundScheduler(timezone="Asia/Kolkata")
-    
-    # Flight prices: twice daily at 6 AM and 6 PM IST
-    scheduler.add_job(job_flight_check, CronTrigger(hour="6,18", minute=0))
-    
-    # Hotel prices: twice daily at 7 AM and 7 PM IST (staggered from flights)
-    scheduler.add_job(job_hotel_check, CronTrigger(hour="7,19", minute=0))
-    
+
+    # Flight prices every 2 hours
+    scheduler.add_job(job_flight_check, CronTrigger(hour="*/2"))
+
+    # Hotel prices every 4 hours
+    scheduler.add_job(job_hotel_check, CronTrigger(hour="*/4"))
+
     # Weekly digest: Sunday 9 AM IST
     scheduler.add_job(job_weekly_digest, CronTrigger(day_of_week="sun", hour=9, minute=0))
-    
-    # Loyalty scraper: Every Wednesday 3 AM IST
-    scheduler.add_job(job_loyalty_scraper, CronTrigger(day_of_week="wed", hour=3, minute=0))
-    
-    # CC portal scraper: Every Thursday 3 AM IST
-    scheduler.add_job(job_cc_portal_scraper, CronTrigger(day_of_week="thu", hour=3, minute=0))
-    
-    # Airline promo scraper: Every Friday 3 AM IST
-    scheduler.add_job(job_airline_promo_scraper, CronTrigger(day_of_week="fri", hour=3, minute=0))
-    
-    # Data cleanup: 1st of every month at 4 AM IST
-    scheduler.add_job(job_cleanup, CronTrigger(day=1, hour=4, minute=0))
-    
+
+    # Loyalty scraper: Wednesday 3 AM IST
+    scheduler.add_job(job_loyalty_scraper, CronTrigger(day_of_week="wed", hour=3))
+
+    # CC portal scraper: Thursday 3 AM IST
+    scheduler.add_job(job_cc_portal_scraper, CronTrigger(day_of_week="thu", hour=3))
+
+    # Airline promo scraper: Friday 3 AM IST
+    scheduler.add_job(job_airline_promo_scraper, CronTrigger(day_of_week="fri", hour=3))
+
+    # Data cleanup: monthly
+    scheduler.add_job(job_cleanup, CronTrigger(day=1, hour=4))
+
     scheduler.start()
     logger.info("Scheduler started with all jobs configured")
-    
+
     return scheduler
 
 
@@ -145,22 +145,29 @@ def setup_scheduler():
 def init_app():
     """Initialize database and scheduler on startup."""
     logger.info("Initializing Travel Deal Hunter Bot...")
-    
-    # Init database tables
+
     try:
         init_database()
         logger.info("Database initialized")
     except Exception as e:
         logger.error(f"Database init failed: {e}")
-        # Continue anyway - DB might already exist
-    
+
     # Start scheduler
     setup_scheduler()
-    
+
+    # Run first scan immediately so bot has data
+    try:
+        logger.info("Running initial flight + hotel scan")
+        config = load_config()
+        run_flight_check(config)
+        run_hotel_check(config)
+    except Exception as e:
+        logger.error(f"Initial scan failed: {e}")
+
     logger.info("Bot initialized and ready")
 
 
-# Run init on import (Gunicorn will import this module)
+# Run init on import
 init_app()
 
 
